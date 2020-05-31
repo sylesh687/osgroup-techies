@@ -1,2 +1,2 @@
 # osgroup-techies
-This Repo Contains Terraform Modules / Ansible Roles
+This Repo Contains Terraform Modules (IaaC)
