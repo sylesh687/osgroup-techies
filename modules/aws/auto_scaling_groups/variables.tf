@@ -20,6 +20,14 @@ variable "vpc_zone_identifier" {
   default=[""]
 }
 
+variable "health_check_type" {
+  default="EC2"
+}
+
+variable "health_check_grace_period" {
+  default="300"
+}
+
 variable "protect_from_scale_in" {}
 variable "termination_policies" {
   default=[""]
