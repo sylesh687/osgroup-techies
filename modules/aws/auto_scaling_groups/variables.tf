@@ -16,9 +16,6 @@ variable "desired_capacity" {}
 		
 // -- Points to "vpc_zone_identifier" --> refers to the VPC ID for the Group 
 
-variable "availability_zones" {
-  default=[""]
-}
 variable "vpc_zone_identifier" {
   default=[""]
 }
@@ -31,9 +28,11 @@ variable "health_check_grace_period" {
   default="300"
 }
 
-variable "protect_from_scale_in" {}
+variable "protect_from_scale_in" {
+  default=true
+}
 variable "termination_policies" {
-  default=[""]
+  default=["Default"]
 }
 variable "launch_template_id" {}
 
