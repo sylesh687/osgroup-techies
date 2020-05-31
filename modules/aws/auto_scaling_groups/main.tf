@@ -19,6 +19,7 @@ resource "aws_autoscaling_group" "auto_scaling_group" {
   vpc_zone_identifier=["${var.vpc_zone_identifier}"]  // refers to VPI  ID
   health_check_type ="${var.health_check_type}"
   health_check_grace_period="${var.health_check_grace_period}"
+  availability_zones= ["${var.availability_zones}"]
   protect_from_scale_in="${var.protect_from_scale_in}"
   termination_policies=["${var.termination_policies}"]
 

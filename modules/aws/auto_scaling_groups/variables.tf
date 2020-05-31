@@ -16,6 +16,9 @@ variable "desired_capacity" {}
 		
 // -- Points to "vpc_zone_identifier" --> refers to the VPC ID for the Group 
 
+variable "availability_zones" {
+  default=[""]
+}
 variable "vpc_zone_identifier" {
   default=[""]
 }
