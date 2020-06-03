@@ -1,7 +1,7 @@
 ---
 # tasks file for elasticsearch
 
-- include: ufw.yml
+- include: firewall.yml
 - include: pre_reqs.yml
 - include: install.yml
 - include: configure.yml
