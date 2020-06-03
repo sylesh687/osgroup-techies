@@ -1,6 +1,0 @@
----
-version: "7.x"
-logstash_version: "7.7.0"
-key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
-repo_url: "deb https://artifacts.elastic.co/packages/{{version}}/apt stable main"
-
