@@ -1,3 +1,42 @@
 ---
-- include: pre-reqs.yml
-- include: configure.yml
+
+#  ElasticSearch Pre-Requisites Defaults
+
+major_version: "7.x"
+abosulte_version: "7.7.0"
+public_key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+repo_definition: "deb https://artifacts.elastic.co/packages/{{major_version}}/apt stable main"
+
+
+#   Elasticsearch JVM Configuration Defaults
+
+xms: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
+xmx: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
+
+
+# Elasticsearch Configuration Defaults
+
+# act respresents the role of the node
+# act can be 'master/client/data/voting_data'
+character: "none"
+
+network_host: "_site_"
+node_name: ${HOSTNAME}
+cluster_name: "osgroup-techies"
+
+rest_port: 9200
+node_port: 9300
+
+
+discovery_zen_minimum_master_nodes: 2
+discovery_zen_ping_unicast_hosts: '["es1.osgroup-techies.com","es2.osgroup-techies.com","es3.osgroup-techies.com"]'
+
+
+#    Elasticsearch Data Path Configuration Defaults
+
+path_data: ["/es1","/es2","/es3"]
+path_logs: "/var/log/elasticsearch"
+master_data: "/esmaster/"
+
+
+

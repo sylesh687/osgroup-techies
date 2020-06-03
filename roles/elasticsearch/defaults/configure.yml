@@ -1,7 +1,0 @@
----
-#   Elasticsearch JVM Configuration Defaults
-
-xms: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
-xmx: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
-
-

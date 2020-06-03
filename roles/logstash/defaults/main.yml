@@ -1,0 +1,3 @@
+---
+- include: pre-reqs.yml
+- include: configure.yml
