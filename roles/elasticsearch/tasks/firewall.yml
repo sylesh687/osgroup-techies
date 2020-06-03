@@ -12,7 +12,6 @@
   with_items:
     - "{{rest_port}}"
     - "{{node_port}}"
-    - "{{telegraf_port}}"
   register: allowed
   ignore_errors: yes
 
