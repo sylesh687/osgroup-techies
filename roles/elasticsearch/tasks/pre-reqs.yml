@@ -1,0 +1,32 @@
+---
+# Install python
+- name: Install Python
+  raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+# Add Hostname
+- name: Add Hostname To Server {{ inventory_hostname }}
+  hostname: name={{ inventory_hostname }}
+
+
+# Install apt-transport-https -> this package enables usage of 'deb https://fo distro main'
+- name: Install [apt-transport-https] 
+  apt:
+    name: apt-transport-https
+    state: present
+
+
+# Import the public signing key
+- name: Import Public Signing Key
+  apt_key:
+    url:  "{{public_key_url}}"
+    state: present
+
+
+# Save repository Definition
+- name:  Save the repository definition
+  apt_repository:
+    repo: "{{repo_definition}}"
+    state: present
+    filename: "elasticsearch-{{version}}.list"
+
+
