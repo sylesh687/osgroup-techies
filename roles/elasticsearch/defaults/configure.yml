@@ -5,3 +5,17 @@ xms: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
 xmx: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
 
 
+# Elasticsearch Configuration Defaults
+
+character: "none"
+network_host: "_site_"
+node_name: ${HOSTNAME}
+cluster_name: "osgroup-techies"
+
+rest_port: 9200
+node_port: 9300
+
+
+discovery_zen_minimum_master_nodes: 2
+discovery_zen_ping_unicast_hosts: '["es1.osgroup-techies.com","es2.osgroup-techies.com","es3.osgroup-techies.com"]'
+
