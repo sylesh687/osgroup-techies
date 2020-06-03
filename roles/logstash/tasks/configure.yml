@@ -1,0 +1,17 @@
+---
+
+
+- name: Configure Elasticsearch
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  notify: "{{ item.handler }}"
+  with_items:
+    - { src: 'logstash.yml.j2', dest: '/etc/logstash/logstash.yml', handler: 'Restart Logstash'}
+    - { src: 'jvm.options.j2', dest: '/etc/logstash/jvm.options', handler: 'Restart Logstash'}
+    - { src: 'log4j2.properties.j2', dest: '/etc/logstash/log4j2.properties', handler: 'Restart Logstash'}
+    - { src: 'pipelines.yml.j2', dest: '/etc/logstash/pipelines.yml', handler: 'Restart Logstash'}
+    - { src: 'logstash.service.j2', dest: '/etc/systemd/system/logstash.service', handler: 'Restart Logstash'}
+    - { src: 'pipeline/input.conf.j2', dest: '/etc/logstash/conf.d/input.conf', handler: 'Restart Logstash'}
+    - { src: 'pipeline/filter.conf.j2', dest: '/etc/logstash/conf.d/filter.conf', handler: 'Restart Logstash'}
+    - { src: 'pipeline/output.conf.j2', dest: '/etc/logstash/conf.d/output.conf', handler: 'Restart Logstash'}

@@ -1,0 +1,11 @@
+---
+# Install elasticsearch
+- name: Install Logstash
+  apt:
+    name: logstash
+    state: present
+    update_cache: yes
+
+# Mark Elasticsearch to avoid accidental upgrades
+- name: Mark hold to Logstash 
+  shell: apt-mark hold logstash
