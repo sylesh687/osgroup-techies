@@ -1,0 +1,20 @@
+---
+
+- name: Set Logging [  UFW  ]
+  ufw:
+    logging: on
+
+- name:  Allow Ports For Elasticsearch
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{item}}"
+  with_items:
+    - "{{rest_port}}"
+    - "{{node_port}}"
+    - "{{telegraf_port}}"
+  register: allowed
+  ignore_errors: yes
+
+- debug:
+    msg: "{{ allowed }} "
