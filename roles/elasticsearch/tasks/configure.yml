@@ -1,0 +1,12 @@
+---
+
+
+- name: Configure Elasticsearch
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  notify: "{{ item.handler }}"
+  with_items:
+    - { src: 'elasticsearch.yml.j2', dest: '/etc/elasticsearch/elasticsearch.yml', handler: 'Restart Elasticsearch'}
+    - { src: 'elasticsearch.service.j2', dest: '/lib/systemd/system/elasticsearch.service', handler: 'Restart Elasticsearch'}
+    - { src: 'jvm.options.j2', dest: '/etc/elasticsearch/jvm.options', handler: 'Restart Elasticsearch'}
