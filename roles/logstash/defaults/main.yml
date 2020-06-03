@@ -1,2 +1,3 @@
 ---
-# defaults file for logstash
+- include: pre-reqs.yml
+- include: configure.yml
