@@ -2,6 +2,6 @@
 ---
 - name: Restart Logstash
   systemd:
-    name: elasticsearch
+    name: logstash
     state: restarted
     daemon_reload: yes
