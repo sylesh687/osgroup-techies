@@ -1,5 +1,4 @@
 ---
----
 - name: Restart Logstash
   systemd:
     name: logstash
