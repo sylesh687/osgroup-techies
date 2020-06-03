@@ -27,6 +27,6 @@
   apt_repository:
     repo: "{{repo_definition}}"
     state: present
-    filename: "elasticsearch-{{major_version}}.list"
+    filename: "elasticsearch-{{major_version}}"
 
 
