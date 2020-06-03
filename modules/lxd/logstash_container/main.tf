@@ -24,7 +24,7 @@ resource "lxd_container" "con" {
 
   
  provisioner "local-exec" {
-    command = "ansible-playbook -i ${lxd_container.con.ip_address} logstash.yml"
+    command = "ansible-playbook -e hosts=${lxd_container.con.ip_address} logstash.yml"
  }
 
 }
