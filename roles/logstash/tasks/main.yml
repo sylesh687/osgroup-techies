@@ -1,6 +1,6 @@
 ---
 # tasks file for Logstash
 
-- include: pre_reqs.yml
+- include: pre-reqs.yml
 - include: install.yml
 - include: configure.yml
