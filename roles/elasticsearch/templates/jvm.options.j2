@@ -9,8 +9,13 @@
 # Xms represents the initial size of total heap space
 # Xmx represents the maximum size of total heap space
 
--Xms{{xms}}g
--Xmx{{xmx}}g
+{% if es_heap is defined %}
+-Xms{{es_heap}}g
+-Xmx{{es_heap}}g
+{% else %}
+-Xms1g
+-Xmx1g
+{% endif %}
 
 # -------------------------
 #  Expert settings
