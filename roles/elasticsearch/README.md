@@ -12,6 +12,7 @@ Role Variables
 --------------
   Variables
 	1) character : master/data/client
+        2) node_class : small/medium/large
 
 Dependencies
 ------------
