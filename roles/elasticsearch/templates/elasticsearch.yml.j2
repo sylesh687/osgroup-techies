@@ -43,6 +43,13 @@ node.name: DATA-{{ character }}
 node.master: false
 node.data: true
 node.ingest: false
+  {% if path_data is defined %}
+path.data:
+  {% for data_path in path_data %}
+  - {{ data_path }}
+  {% endfor %}
+  - /var/lib/elasticsearch
+  {% endif %}
   {% endif %}
   {% if character == "client" %}
 node.name: CLIENT-{{ character }}
@@ -59,10 +66,13 @@ node.attr.rack: {{ node_class }}
     {% endif %}
   {% endif %}
 {% endif %}
-#
-#node.attr.rack: r1
-#
 
-
+# --------------------------------- Discovery ----------------------------------
+# Pass an initial list of hosts to perform discovery when this node is started:
+discovery.zen.ping.unicast.hosts: {{ discovery_zen_ping_unicast_hosts}}
+discovery.zen.minimum_master_nodes: {{ discovery_zen_minimum_master_nodes }}
+action.destructive_requires_name: true
+bootstrap.memory_lock: true
+path.logs: /var/log/elasticsearch
 
 
