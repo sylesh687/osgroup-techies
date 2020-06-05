@@ -26,7 +26,7 @@ node_name: ${HOSTNAME}
 cluster_name: "osgroup-techies"
 
 rest_port: 9200
-http_port: 9300
+http_port: 9200
 
 
 discovery_zen_minimum_master_nodes: 2

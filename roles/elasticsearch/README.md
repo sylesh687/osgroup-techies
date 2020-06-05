@@ -13,6 +13,7 @@ Role Variables
   Variables
 	1) character : master/data/client
         2) node_class : small/medium/large
+        3) es_heap: 32/64
 
 Dependencies
 ------------

@@ -2,14 +2,11 @@
 #  ======================== Elasticsearch Configuration =========================
 
 # ---------------------------------    Cluster Name   -------------------------
-
 {% if cluster_name is defined %}
 cluster.name: "{{ cluster_name }}"
 {% else %}
 cluster.name: "{{ cluster_name }}"
 {% endif %}
-
-
 # ---------------------------------- Network -----------------------------------
 #
 # Set the bind address to a specific IP (IPv4 or IPv6):
@@ -20,51 +17,44 @@ network.host: {{ network_host }}
 network.host: 0.0.0.0
 {% endif %}
 
-
 # Set a custom port for HTTP:
 {% if http_port is defined %}
 http.port: {{ http_port }}
 {% else %} 
 http.port: 9200
 {% endif %}
-
-
 # ------------------------------------ Node ------------------------------------
 #
 {% if character is defined %}
-  {% if character == "master" %}
-node.name: MASTER-{{ character }}
+{% if character == "master" %}
+node.name: MASTER-{{ node_name }}
 node.master: true
 node.data: false
 node.ingest: false
-  {% endif %}
-  {% if character == "data" %}
-node.name: DATA-{{ character }}
+{% endif %}
+{% if character == "data" %}
+node.name: DATA-{{ node_name }}
 node.master: false
 node.data: true
 node.ingest: false
-  {% if path_data is defined %}
+{% if path_data is defined %}
 path.data:
-  {% for data_path in path_data %}
+{% for data_path in path_data %}
   - {{ data_path }}
-  {% endfor %}
+{% endfor %}
+{% else %}
   - /var/lib/elasticsearch
-  {% endif %}
-  {% endif %}
-  {% if character == "client" %}
-node.name: CLIENT-{{ character }}
+{% endif %}
+{% if node_class is defined %}
+node.attr.rack: {{ node_class }}
+{% endif %}
+{% endif %}
+{% if character == "client" %}
+node.name: CLIENT-{{ node_name }}
 node.master: false
 node.data: false
 node.ingest: false
-  {% endif %}
 {% endif %}
-# --------------------------------- Defining the Node Class -------------------
-{% if character is defined %}
-  {% if node_class is defined %}
-    {% if character == "data" %}
-node.attr.rack: {{ node_class }}       
-    {% endif %}
-  {% endif %}
 {% endif %}
 
 # --------------------------------- Discovery ----------------------------------
