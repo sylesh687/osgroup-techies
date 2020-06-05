@@ -18,14 +18,14 @@
 # Import the public signing key
 - name: Import Public Signing Key
   apt_key:
-    url:  "{{public_key_url}}"
+    url:  "{{key_url}}"
     state: present
 
 
 # Save repository Definition
 - name:  Save the repository definition
   apt_repository:
-    repo: "{{repo_definition}}"
+    repo: "{{repo_url}}"
     state: present
     filename: "logstash-{{version}}.list"
 
