@@ -1,1 +1,33 @@
 # {{ ansible_managed }}
+#  ======================== Elasticsearch Configuration =========================
+
+# ---------------------------------    Cluster Name   -------------------------
+
+{% if cluster_name is defined %}
+cluster.name: "{{ cluster_name }}"
+{% else %}
+cluster.name: "{{ cluster_name }}"
+{% endif %}
+
+
+# ---------------------------------- Network -----------------------------------
+#
+# Set the bind address to a specific IP (IPv4 or IPv6):
+#
+{% if network_host is defined %}
+network.host: {{ network_host }}
+{% else %}
+network.host: 0.0.0.0
+{% endif %}
+
+
+# Set a custom port for HTTP:
+{% if http_port is defined %}
+http.port: {{ http_port }}
+{% else %} 
+http.port: 9200
+{% endif %}
+
+
+
+
