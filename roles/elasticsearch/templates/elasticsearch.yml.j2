@@ -29,5 +29,40 @@ http.port: 9200
 {% endif %}
 
 
+# ------------------------------------ Node ------------------------------------
+#
+{% if character is defined %}
+  {% if character == "master" %}
+node.name: MASTER-{{ character }}
+node.master: true
+node.data: false
+node.ingest: false
+  {% endif %}
+  {% if character == "data" %}
+node.name: DATA-{{ character }}
+node.master: false
+node.data: true
+node.ingest: false
+  {% endif %}
+  {% if character == "client" %}
+node.name: CLIENT-{{ character }}
+node.master: false
+node.data: false
+node.ingest: false
+  {% endif %}
+{% endif %}
+# --------------------------------- Defining the Node Class -------------------
+{% if character is defined %}
+  {% if node_class is defined %}
+    {% if character == "data" %}
+node.attr.rack: {{ node_class }}       
+    {% endif %}
+  {% endif %}
+{% endif %}
+#
+#node.attr.rack: r1
+#
+
+
 
 

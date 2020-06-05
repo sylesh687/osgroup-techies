@@ -19,6 +19,7 @@ es_heap: "{{(((ansible_memtotal_mb/1024) | round(0,'floor'))/2) | int}}"
 # act respresents the role of the node
 # act can be 'master/client/data/voting_data'
 character: "none"
+node_class: "medium"
 
 network_host: "_site_"
 node_name: ${HOSTNAME}
