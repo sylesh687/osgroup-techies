@@ -9,4 +9,5 @@
   apt:
     name: "{{ java_packages }}"
     state: present
+  ignore_errors: yes
 
