@@ -1,0 +1,7 @@
+---
+- name: List Topics 
+  command: "{{ kafka_home }}/bin/kafka-topics.sh --list --zookeeper localhost:2181"
+  register: topics
+
+- debug:
+    msg: "{{ topics.stdout_lines }}"

@@ -1,0 +1,9 @@
+---
+- name: Install Kafka
+  include: install.yml
+
+- name: Configure Kafka
+  include: configure.yml
+ 
+- name: Kafka Topics
+  include: list-topics.yml

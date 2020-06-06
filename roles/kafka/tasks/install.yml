@@ -1,0 +1,43 @@
+---
+- name: Check For Kafka Installation..
+  become: yes
+  stat:
+    path: '{{ install_dir }}'
+  changed_when: false
+  register: kafka_installs
+
+- when: not kafka_installs.stat.exists
+  block:
+    - name: Download Kafka Tar...
+      get_url:
+        url: '{{ kafka_url }}'
+        dest: /tmp/
+        mode: '0644'
+        timeout: '{{ kafka_download_timeout_seconds }}'
+
+    - name: 'ensure {{ install_dir }} exists'
+      file:
+        path: '{{ install_dir }}'
+        state: directory
+        mode: '0755'
+
+    - name: UnArchive...
+      unarchive:
+        remote_src: yes
+        src: /tmp/{{ kafka_tar}}
+        dest: '{{ install_dir }}'
+        creates: '{{ kafka_dir }}'
+  always:
+    - name: Delete Archive...
+      file:
+        path: /tmp/{{ kafka_tar }}
+        state: absent
+
+- name: Include Kafka In Default Path
+  with_items:
+    - d: /etc/profile.d
+      f: kafka.sh
+  template:
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d }}/{{ item.f }}'
+    mode: '{{ item.m|default("0644") }}'

@@ -1,0 +1,10 @@
+---
+install_dir: "/usr/local/kafka_installs"
+scala_ver: "2.12"
+kafka_ver: "2.5.0"
+kafka_url: "https://downloads.apache.org/kafka/{{kafka_ver}}/kafka_{{scala_ver}}-{{kafka_ver}}.tgz"
+kafka_download_timeout_seconds: 600
+kafka_temp: "kafka_temp"
+kafka_dir: "kafka"
+kafka_tar: "kafka_{{scala_ver}}-{{kafka_ver}}.tgz"
+kafka_home: "{{ install_dir }}/kafka_{{scala_ver}}-{{kafka_ver}}"
