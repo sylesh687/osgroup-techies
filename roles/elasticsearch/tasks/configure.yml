@@ -1,6 +1,4 @@
 ---
-
-
 - name: Configure Elasticsearch
   template:
     src: "{{ item.src }}"

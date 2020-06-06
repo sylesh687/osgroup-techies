@@ -8,7 +8,7 @@
     - { src: 'zookeeper.properties.j2', dest: '{{kafka_home}}/config/zookeeper.properties', handler: 'Restart Zookeeper'}
     - { src: 'kafka-server.properties.j2', dest: '{{kafka_home}}/config/server.properties', handler: 'Restart Kafka'}
     - { src: 'kafka.service.j2', dest: '/etc/systemd/system/kafka.service', handler: 'Reload Systemd'}
-    - { src: 'zookeeper.service.j2', dest: '/etc/systemd/system/kafka.service', handler: 'Reload Systemd'}
+    - { src: 'zookeeper.service.j2', dest: '/etc/systemd/system/zookeeper.service', handler: 'Reload Systemd'}
 
 
 
