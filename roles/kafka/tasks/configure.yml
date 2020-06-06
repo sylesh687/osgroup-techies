@@ -1,50 +1,14 @@
 ---
-- name: Manage Zookeeper Properties Files
+- name: Configure Apache Kafka
   template:
-    src: "zookeeper.properties.j2"
-    dest: "{{kafka_home}}/config/zookeeper.properties"
-    owner: root
-    group: root
-    mode: 0600
-  notify: Restart Zookeeper
-
-- name: Manage Kafka Server  Properties Files
-  template:
-    src: "kafka-server.properties.j2"
-    dest: "{{kafka_home}}/config/server.properties"
-    owner: root
-    group: root
-    mode: 0600
-  notify: Restart Kafka
-
-#--- Manage Systemd For ZooKeeper And Kafka
-- name: Install  Kafka Systemd Service 
-  template:
-    src: "kafka.service.j2"
-    dest: "/etc/systemd/system/kafka.service"
-    owner: root
-    group: root
-    mode: 0600
-  notify: Reload Systemd
- 
-- name: Install  Zookeeper Systemd Service  
-  template:
-    src: "zookeeper.service.j2"
-    dest: "/etc/systemd/system/zookeeper.service"
-    owner: root
-    group: root
-    mode: 0600
-  notify: Reload Systemd
-
-- name: Start Zookeeper
-  systemd:
-    name: zookeeper.service
-    state: started
-
-- name: Start Kafka
-  systemd:
-    name: kafka.service
-    state: started
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  notify: "{{ item.handler }}"
+  with_items:
+    - { src: 'zookeeper.properties.j2', dest: '{{kafka_home}}/config/zookeeper.properties', handler: 'Restart Zookeeper'}
+    - { src: 'kafka-server.properties.j2', dest: '{{kafka_home}}/config/server.properties', handler: 'Restart Kafka'}
+    - { src: 'kafka.service.j2', dest: '/etc/systemd/system/kafka.service', handler: 'Reload Systemd'}
+    - { src: 'zookeeper.service.j2', dest: '/etc/systemd/system/kafka.service', handler: 'Reload Systemd'}
 
 
 
