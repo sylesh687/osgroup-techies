@@ -27,7 +27,7 @@ resource "lxd_container" "this" {
   
  provisioner "local-exec" {
     
-    command = " echo \"[target] \n${lxd_container.con.ip_address}\" >hosts ; ansible-playbook  -i hosts ../playbooks/kafka/kafka.yml"
+    command = " echo \"[target] \n${lxd_container.con.ip_address}\" >hosts ; ansible-playbook  -i hosts ../../../ansible/docker/docker.yml"
  }
 
 }
