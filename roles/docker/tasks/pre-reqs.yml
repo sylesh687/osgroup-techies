@@ -1,0 +1,13 @@
+---
+- name: Install Pre-Reqs for Docker
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates 
+    - curl
+    - gnupg-agent
+    - software-properties-common
+...

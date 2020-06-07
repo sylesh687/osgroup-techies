@@ -1,0 +1,13 @@
+---
+- name: Remove Old Version Of Docker
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker
+    - docker-engine
+    - docker.io
+    - containerd
+    - runc
+  ignore_errors: yes
+...

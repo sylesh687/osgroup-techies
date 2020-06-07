@@ -1,0 +1,7 @@
+---
+# defaults file for docker
+key_url: "https://download.docker.com/linux/ubuntu/gpg"
+xenial_repo_url: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+bionic_repo_url:  "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+focal_repo_url: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+

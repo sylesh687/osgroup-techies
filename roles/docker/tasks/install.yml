@@ -1,0 +1,46 @@
+---
+- name: Docker Stuff ..
+  block:
+    - name: Add Docker’s official GPG key
+      apt_key:
+        url: "{{ key_url }}"
+        state: present
+
+    
+    - name: XENIAL XERUS -- > Save the repository definition
+      apt_repository:
+        repo: "{{xenial_repo_url}}"
+        state: present
+        filename: "docker"
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+
+    - name: BIONIC BEAVER -- > Save the repository definition
+      apt_repository:
+        repo: "{{bionic_repo_url}}"
+        state: present
+        filename: "docker"
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
+ 
+    - name: FOCAL FOSSA -- > Save the repository definition
+      apt_repository:
+        repo: "{{focal_repo_url}}"
+        state: present
+        filename: "docker"
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'focal'
+    
+    - name: Install Docker
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+    
+  rescue:
+    - debug:
+        msg: " Rescue Code"
+  always:
+    - debug:
+        msg: " Always Code "

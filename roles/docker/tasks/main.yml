@@ -1,0 +1,5 @@
+---
+# tasks file for docker
+- include: purge-old.yml 
+- include: pre-reqs.yml 
+- include: install.yml
