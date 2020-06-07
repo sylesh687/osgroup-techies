@@ -1,0 +1,9 @@
+---
+- name: Check Docker Status
+  shell: systemctl status docker
+  register: status
+
+- debug:
+    msg: "{{ status.stdout_lines}}"
+...
+

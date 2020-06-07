@@ -3,3 +3,4 @@
 - include: purge-old.yml 
 - include: pre-reqs.yml 
 - include: install.yml
+- include: check-status.yml
