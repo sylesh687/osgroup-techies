@@ -24,6 +24,7 @@ resource "docker_container" "container" {
   name    = "${var.container_name}"
   image   = "${docker_image.image.latest}"
   restart = "on-failure"
+  memory  = "512"
 
 
   ports {
