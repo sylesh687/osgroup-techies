@@ -26,11 +26,11 @@ resource "docker_container" "container" {
     }
 
 
-    volumes  {
-       volume_name    = "JekinsImps"
-       host_path       = "${var.mountpath}"
-       container_path = "/var/jenkins_home"    
-   }
+//    volumes  {
+//       volume_name    = "JekinsImps"
+//      host_path       = "${var.mountpath}"
+//       container_path = "/var/jenkins_home"    
+//   }
 
     
 
