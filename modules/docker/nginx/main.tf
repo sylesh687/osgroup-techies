@@ -28,7 +28,7 @@ resource "docker_container" "container" {
 
   ports {
     internal = 80
-    external = 9999
+    external = "${var.port}"
   }
 
 //  volumes {

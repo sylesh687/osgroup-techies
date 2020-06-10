@@ -40,7 +40,7 @@
     
   rescue:
     - debug:
-        msg: " Please Check Your InterNet Connectivity and Re- Run"
+        msg: " Rescue Code"
   always:
     - debug:
-        msg: " :-) "
+        msg: " Always Code "

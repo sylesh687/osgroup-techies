@@ -1,7 +1,0 @@
----
-- name: ( Systemd | Manage Systemd File for Nginx)
-  template:
-    src: ../template/systemd/nginx.service.j2
-    dest: /lib/systemd/system/nginx.service
-
-...
