@@ -1,0 +1,8 @@
+---
+- name: "(Install: ) Install NGINX"
+  apt:
+    name: "nginx{{ version | default('') }}"
+    state: "present"
+    update_cache: yes
+  notify: Start Nginx
+...

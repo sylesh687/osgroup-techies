@@ -1,0 +1,6 @@
+---
+- include: pre-reqs/main.yml
+- include: install/main.yml
+- include: configure/main.yml
+
+...

@@ -1,0 +1,16 @@
+---
+- name: ( Configurations |  Create  A Backup Folder)
+  file:
+    path: /opt/nginx_backup
+    owner: root
+    group: root
+    state: directory
+    mode: 0755
+
+- name: ( Configurations |  Backing Up .....)
+  synchronize:
+    src: /etc/nginx
+    dest: /opt/nginx_backup
+    recursive: yes
+  delegate_to: "{{ inventory_hostname }}"
+...

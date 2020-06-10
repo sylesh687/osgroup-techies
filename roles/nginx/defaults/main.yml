@@ -1,0 +1,18 @@
+---
+#   Public Key For Nginx
+
+key_url: "https://nginx.org/keys/nginx_signing.key"
+
+xenial_repo_url:
+  - "deb https://nginx.org/packages/mainline/ubuntu/ xenial nginx"
+
+bionic_repo_url:
+  - "deb https://nginx.org/packages/mainline/ubuntu/ bionic nginx"
+  - "deb-src https://nginx.org/packages/mainline/debian/ bionic nginx"
+
+focal_repo_url:
+  - "deb https://nginx.org/packages/mainline/ubuntu/ focal nginx"
+  - "deb-src https://nginx.org/packages/mainline/debian/ focal nginx"
+
+version: ""
+...

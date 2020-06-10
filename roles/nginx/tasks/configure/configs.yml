@@ -1,0 +1,32 @@
+---
+
+- name: ( Configurations | General Settings Files Push )
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/{{ item | basename | replace('.j2', '') }}
+  with_fileglob:
+    - ../templates/general-configs/*.j2
+
+
+- name: ( Configurations | Sites Available  Files Push )
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/sites-available/{{ item | basename | replace('.j2', '') }}
+  with_fileglob:
+    - ../templates/sites-available/*.j2
+
+
+- name: ( Configurations | Sites Enabled  Files Push )
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/sites-enabled/{{ item | basename | replace('.j2', '') }}
+  with_fileglob:
+    - ../templates/sites-enabled/*.j2
+
+- name: ( Configurations | Snippets  Files Push )
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/snippets/{{ item | basename | replace('.j2', '') }}
+  with_fileglob:
+    - ../templates/snippets/*.j2
+...

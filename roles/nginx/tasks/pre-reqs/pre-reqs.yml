@@ -1,0 +1,8 @@
+---
+- name: "(Pre-Requisites: ) Install Required Ubuntu Dependencies"
+  apt:
+    name:
+      - apt-transport-https
+      - dirmngr
+      - python-apt
+...

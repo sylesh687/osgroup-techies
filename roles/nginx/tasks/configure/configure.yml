@@ -1,0 +1,19 @@
+---
+- name: ( Configure | Nginx )
+  block:
+    - include: backup.yml
+
+    - include: configs.yml
+
+    - name: ( File Syntax Check | Sanity Before Apply )
+      shell: #nginx -t
+      register: status
+
+    - debug:
+        msg: "{{ status.stdout_lines }}"
+
+  rescue:
+    - include: restore.yml
+          
+
+...

@@ -1,0 +1,25 @@
+---
+- name: "(ADD: - XENIAL )  NGINX Signing Key"
+  apt_key:
+    url: "{{ key_url }}"
+    state: present
+
+- name: "(ADD: - XENIAL )  NGINX Repository"
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    filename: "nginx-{{version}}"
+  with_items:
+    - "{{ xenial_repo_url }}"
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+
+
+- name: "(ADD: - BIONIC ) NGINX Repository"
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    filename: "nginx-{{version}}"
+  with_items:
+    - "{{ bionic_repo_url }}"
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
+...

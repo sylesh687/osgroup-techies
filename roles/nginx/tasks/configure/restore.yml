@@ -1,0 +1,11 @@
+---
+- name: ( Configurations | Restoring ....)
+  synchronize:
+    src: /opt/nginx_backup/
+    dest: /etc/nginx/
+    delete: yes
+    recursive: yes
+    existing_only: yes
+  delegate_to: "{{ inventory_hostname }}"
+  notify: Reload Nginx
+...
