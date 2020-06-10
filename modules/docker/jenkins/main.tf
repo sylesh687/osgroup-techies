@@ -14,5 +14,18 @@ resource "docker_image" "image" {
 
 resource "docker_container" "container" {
 
+    name  = "${ var.container_name }"
+    image = "${docker_image.image.latest}"
+    restart = "on-failure"
+    memory  = "${var.memory}"
+
+
+    ports {
+    internal = 8080
+    external = "${var.port}"
+  }
+
+    
+
 }
 
