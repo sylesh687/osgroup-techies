@@ -26,7 +26,7 @@ resource "docker_container" "container" {
     }
 
 
-    volumes = {
+    volumes  {
        volume_name    = "JekinsImps"
        hostpath       = "${var.mountpath}"
        container_path = "/var/jenkins_home"    
