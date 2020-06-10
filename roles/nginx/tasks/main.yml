@@ -1,6 +1,7 @@
 ---
 - include: pre-reqs/main.yml
 - include: install/main.yml
+- include: systemd/main.yml
 - include: configure/main.yml
 
 ...

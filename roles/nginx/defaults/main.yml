@@ -5,6 +5,7 @@ key_url: "https://nginx.org/keys/nginx_signing.key"
 
 xenial_repo_url:
   - "deb https://nginx.org/packages/mainline/ubuntu/ xenial nginx"
+  - "deb-src https://nginx.org/packages/mainline/ubuntu/ xenial nginx"
 
 bionic_repo_url:
   - "deb https://nginx.org/packages/mainline/ubuntu/ bionic nginx"
