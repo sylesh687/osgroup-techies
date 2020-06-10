@@ -21,9 +21,16 @@ resource "docker_container" "container" {
 
 
     ports {
-    internal = 8080
-    external = "${var.port}"
-  }
+      internal = 8080
+      external = "${var.port}"
+    }
+
+
+    volumes = {
+       volume_name    = "JekinsImps"
+       hostpath       = "${var.mountpath}"
+       container_path = "/var/jenkins_home"    
+   }
 
     
 
