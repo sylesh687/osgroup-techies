@@ -17,14 +17,12 @@ resource "kubernetes_service" "service" {
      app = "${var.name}"
    }
 
-  }
-
   port {
       port        = 8080
       target_port = 5601
     }
 
-
+  }
   type = "NodePort"
 
 }
