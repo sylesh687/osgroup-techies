@@ -1,1 +1,7 @@
 # {{ ansible_managed }}
+output {
+  elasticsearch {
+    hosts => ["http://elasitcsearch.osgroup-techies.com:9200"]
+    index => "%{[@metadata][beat]}-%{[@metadata][version]}" 
+  }
+}

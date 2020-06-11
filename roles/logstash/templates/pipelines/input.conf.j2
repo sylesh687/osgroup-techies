@@ -1,1 +1,17 @@
 # {{ ansible_managed }}
+
+{% if kafka_hosts is defined %}
+input {
+  kafka {
+    id => "my_plugin_id"
+  }
+}
+{% else %}
+
+input {
+  beats {
+    port => 5044
+  }
+}
+
+{% endif %}
