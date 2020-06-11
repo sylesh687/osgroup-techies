@@ -8,7 +8,7 @@ resource "kubernetes_config_map" "config_map" {
   metadata {
     name = "${var.name}"
     
-    labels {
+    labels = {
  
       app = "${var.name}"
     
