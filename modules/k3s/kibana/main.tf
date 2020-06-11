@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "config_map" {
     
     labels {
  
-      app = "${var.app}"
+      app = "${var.name}"
     
 
     }
