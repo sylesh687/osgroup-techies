@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+
+server {
+  
+   listen 80;
+   {% if server_name is defined %}
+   server_name {{ server_name }};
+   {% else %}
+   server_name osgroup-techies.com;
+   {% endif %}
+   
+   location / {
+         proxy_pass {{ target_host }}:{{ target_port }}
+    }
+
+
+
+}
+
