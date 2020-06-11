@@ -22,8 +22,9 @@ resource "kubernetes_service" "service" {
       target_port = 5601
     }
 
-  }
+  
   type = "NodePort"
+  }
 
 }
 
