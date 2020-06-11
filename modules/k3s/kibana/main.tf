@@ -11,7 +11,7 @@ resource "kubernetes_config_map" "config_map" {
 
   data = {
 
-  "filebeat.yml" = ""${file("${path.module}/filebeat.yml")}""
+  "filebeat.yml" = "${file("${path.module}/filebeat.yml")}"
 
   }
 
