@@ -1,0 +1,13 @@
+---
+- name: Reload Systemd
+  become: yes
+  systemd:
+    daemon_reload: yes
+
+- name: Restart Filebeat
+  become: yes
+  systemd:
+    name: filebeat.service
+    state: restarted
+    enabled: yes
+    #  masked: yes

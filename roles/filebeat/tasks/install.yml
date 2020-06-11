@@ -1,0 +1,20 @@
+- name: Install Filebeat package
+  apt:
+    name: "filebeat={{ filebeat_version }}"
+    state: present
+  notify: Restart Filebeat
+
+- name: Mark Hold To The Filebeat Package ( Avoids Accidental Upgrades )
+  command: apt-mark hold filebeat
+  register: markoutput
+
+- name: Create main Filebeat config
+  template:
+    src: "filebeat.service.j2"
+    dest: "/lib/systemd/system/filebeat.service"
+    owner: root
+    group: root
+    mode: 0600
+  notify: Reload Systemd
+
+

@@ -1,0 +1,68 @@
+# {{ ansible_managed }}
+
+###################### Filebeat Configuration Example #########################
+
+# This file is an example configuration file highlighting only the most common
+# options. The filebeat.reference.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+
+# For more available modules and options, please see the filebeat.reference.yml sample
+# configuration file.
+
+#=========================== Filebeat inputs =============================
+
+filebeat.inputs:
+- type: {{ input_type }}
+  paths:
+  - /var/log/*.log
+  
+  #exclude_lines: {{ exclude_lines }}
+  #include_lines: {{ include_lines }}
+  #exclude_files: {{ exclude_files }}
+  #fields:
+  #  level: debug
+  #  review: 1
+
+
+  ### Multiline options
+  #multiline.pattern: ^\[
+  #multiline.negate: false
+  #multiline.match: after
+ 
+#================================ General =====================================
+#name:
+#tags: ["service-X", "web-tier"]
+#fields:
+#  env: staging
+
+#--------------------------- Kafka Output -------------------------------------
+
+{% if kafka_broker_host is defined %}
+output.kafka:
+  # initial brokers for reading cluster metadata
+  hosts:  [ {% for kafka_broker in kafka_broker_hosts %}"{{ kafka_broker }}:{{ kafka_broker_port }}"{{ ',' if not loop.last else '' }}{% endfor %} ]
+
+  topic: '{{ kafka_topic }}'
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: {{ kafka_compression }}
+  max_message_bytes: {{ kafka_max_message_bytes }}
+{% else %}
+output.logstash:
+  hosts: ["{{ logstash_host }}:5044"]
+{% endif %}
+#================================ Processors ====================================
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+
+#================================ Logging =====================================
+#logging.level: debug
+#logging.selectors: ["*"]

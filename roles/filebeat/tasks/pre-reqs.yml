@@ -1,0 +1,25 @@
+---
+- name: Add Filebeat Repo Key
+  apt_key:
+    url: "{{ key_url }}"
+    state: present
+
+- name: Add Filebeat Repository
+  apt_repository:
+    repo: "{{ repo_url }}"
+    state: present
+
+- name: Update Apt Repo And Cache
+  apt: 
+    update_cache: yes 
+    cache_valid_time: 3600
+# -----------Installing Pre-Required Packages
+
+- name: Install Pre-Required Packages
+  apt:
+    name:
+      - apt-transport-https
+    state: present
+    force_apt_get: yes
+    install_recommends: no
+

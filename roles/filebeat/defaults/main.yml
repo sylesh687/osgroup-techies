@@ -1,0 +1,33 @@
+---
+# defaults file for filebeat
+# ---Install Essential Defaults -----------------
+version: "7.x"
+filebeat_version: "7.7.*"
+key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+repo_url: "deb https://artifacts.elastic.co/packages/{{version}}/apt stable main" 
+
+#------------------Filebeat Input Configurations--
+input_type: log
+enable_input_configuration: true
+paths:
+  - /var/log/*.log
+exclude_lines: ['^DBG']
+include_lines: ['^ERR', '^WARN']
+exclude_files: ['.gz$']
+
+#-----------------Kafka Hosts --------------------
+kafka_broker_hosts: []
+#  - broker1
+#  - broker2 
+#  - broker3
+#
+kafka_broker_port: 9092
+kafka_topic: "test_topic"
+kafka_compression: gzip
+kafka_max_message_bytes: 1000000
+#-------------------filebeat Modules --------------
+reload_enabled: true
+reload_period: 10s
+
+logstash_host: "logstash.osgroup-techies.com"
+
