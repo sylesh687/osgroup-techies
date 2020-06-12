@@ -1,0 +1,14 @@
+---
+- name: ( Installs | Install Required Packages for KVM)
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - qemu
+    - qemu-kvm
+    - libvirt-bin
+    - bridge-utils
+    - virt-manager
+
+...

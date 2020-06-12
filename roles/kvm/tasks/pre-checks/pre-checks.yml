@@ -1,0 +1,26 @@
+---
+
+- name: ( Pre-Checks | Check If The Hardware IS ParaVirtualized )
+  shell: egrep -c '(vmx|svm)' /proc/cpuinfo
+  register: result
+
+- fail:
+    msg: "Hardware is on Paravirtualized or Virtualization is Not enabled"
+  when:  result.stdout | int   == 0
+
+- name: ( Pre-Checks | Install  Cpu Checker)
+  apt:
+    name: cpu-checker
+    state: present
+
+- name: ( Pre-Checkcs | Check  If  Server is Capable Of Running Hardware Accelerated KVM virtual machines)
+  shell: sudo kvm-ok
+  register: kvm_ok
+
+
+- fail:
+    msg: "Server is Not Capable Of Running Hardware Accelerated KVM virtual machines"
+  when: "'KVM acceleration can be used'  not in kvm_ok.stdout_lines "
+
+
+...
