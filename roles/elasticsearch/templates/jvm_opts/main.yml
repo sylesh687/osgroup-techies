@@ -1,0 +1,12 @@
+#{{ ansible_managed }}"
+
+
+{% if es_heap is defined %}
+-Xms{{es_heap}}g
+-Xmx{{es_heap}}g
+{% else %}
+-Xms1g
+-Xmx1g
+{% endif %}
+
+

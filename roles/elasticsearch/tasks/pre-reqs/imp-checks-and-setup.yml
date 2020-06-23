@@ -1,0 +1,8 @@
+---
+
+- name: ( Elasticsearch | Maximum Number of Threads )
+  systctl:
+    name: nproc
+    value: 
+
+...
