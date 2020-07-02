@@ -3,11 +3,6 @@
 - name: Install Python
   raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
-# Add Hostname
-- name: Add Hostname To Server {{ inventory_hostname }}
-  hostname: name={{ inventory_hostname }}
-
-
 # Install apt-transport-https -> this package enables usage of 'deb https://fo distro main'
 - name: Install [apt-transport-https] 
   apt:
@@ -25,7 +20,7 @@
 # Save repository Definition
 - name:  Save the repository definition
   apt_repository:
-    repo: "{{repo_definition}}"
+    repo: "{{ repo_definition}}"
     state: present
     filename: "elasticsearch-{{major_version}}"
 

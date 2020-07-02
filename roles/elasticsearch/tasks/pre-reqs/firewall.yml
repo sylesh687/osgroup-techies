@@ -9,9 +9,7 @@
     rule: allow
     proto: tcp
     port: "{{item}}"
-  with_items:
-    - "{{rest_port}}"
-    - "{{node_port}}"
+  with_items: "{{ ufw_ports }}"
   register: allowed
   ignore_errors: yes
 
