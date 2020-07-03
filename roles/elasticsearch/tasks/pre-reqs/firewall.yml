@@ -1,17 +1,32 @@
 ---
+- name: Firewall Configurations for [ Elasticsearch ]
+  block:
+    - name: Check if firewall is ON
+      shell: ufw status
+      register: ufw_status
+    
+    # - debug:
+    #     msg: "{{ ufw_status }}"
 
-- name: Set Logging [  UFW  ]
-  ufw:
-    logging: on
+    - name: Switch on the Firewall
+      ufw: 
+        state: enabled
+      when: "'inactive' in ufw_status.stdout_lines"
 
-- name:  Allow Ports For Elasticsearch
-  ufw:
-    rule: allow
-    proto: tcp
-    port: "{{item}}"
-  with_items: "{{ ufw_ports }}"
-  register: allowed
-  ignore_errors: yes
+    - name:  Allow Ports For Elasticsearch
+      ufw:
+        rule: allow
+        proto: tcp
+        port: "{{item}}"
+      with_items: "{{ ufw_ports }}"
+      register: allowed
+      ignore_errors: yes
+    
+  # Error Handling for Firewall Needs To Be Written
 
-- debug:
-    msg: "{{ allowed }} "
+
+  always:
+    - name: Set Logging [  UFW  ]
+      ufw:
+        logging: on
+

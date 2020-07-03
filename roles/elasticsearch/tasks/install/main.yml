@@ -1,3 +1,42 @@
 ---
+- name: Get all Packages
+  package_facts:
+    manager: auto
+
+# Install Elasticsearch if it is not installed
+
 - include: install.yml
+  when: "'{{ package_name }}' not in ansible_facts.packages"
+  
+
+# Check the versions of Elasticearch Installed 
+- name: Compare the version of {{ package_name }}
+  block:
+    - name: Set the current version of {{ package_name }} to a var
+      set_fact: 
+        es_version: "{{ ansible_facts.packages['curl'][0].version.split('-') | list }}"
+    
+    # - debug:
+    #     msg: "{{ es_version }},{{ abosulte_version }} "
+
+    - name: Compare the version of {{ package_name }}
+      block:
+        - name: Ask for confirmation
+          pause:
+            prompt: "{{ es_version[0] }} Version of ES is Already Installed. Are you sure you want to override? (yes/no)"
+            echo: yes
+          register: confirmation
+        
+        # Purge and Install New Elasticsearch
+        - name: Purge and Install New
+          block:
+            - include: purge.yml
+            - include: install.yml
+          when: confirmation.user_input | bool
+
+      when: "'{{ abosulte_version }}' not in es_version "
+  
+  when: "'{{ package_name }}' in ansible_facts.packages  "
+
+
 ...

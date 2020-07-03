@@ -1,6 +1,27 @@
 ---
 
-- include: pre-reqs/main.yml
+- name: Install Elasticsearch 
+  block:
+    - include: pre-reqs/main.yml
+
+    - name: Backup Elasticsearch Configuration
+      block:
+        - include: backup/main.yml
+      
+    - name: Install Elasticsearch 
+      block:
+        - include: install/main.yml
+
+    - name: Configure Elasticsearch
+      block: 
+        - include: configure.main.yml
+        
+  rescue:
+    - debug: 
+        msg: "Rescue Operation"
+  always:
+    - debug:
+        msg: "East or West ES is the Best"
 
 ...
 

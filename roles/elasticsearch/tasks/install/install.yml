@@ -1,11 +1,11 @@
----
-# Install elasticsearch
-- name: Install Elasticsearch
+---      
+- name: Install Elasticsearch {{ abosulte_version }}
   apt:
     name: elasticsearch
     state: present
     update_cache: yes
 
-# Mark Elasticsearch to avoid accidental upgrades
 - name: Mark hold to elasticsearch
   shell: apt-mark hold elasticsearch
+      
+...

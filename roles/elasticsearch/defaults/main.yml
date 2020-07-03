@@ -6,11 +6,19 @@ ufw_ports:
   - 9300
   - 22
 
+# Backup Directory for Configurations while applying new change
+backup_dir: "/opt/es-backups/"
+configuration_dir: "/etc/elasticsearch"
+package_name: "elasticsearch"
+
+
+
 
 #  ElasticSearch Pre-Requisites Defaults
 
 major_version: "7.x"
 abosulte_version: "7.7.0"
+#abosulte_version: "7.58.0"
 public_key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
 repo_definition: "deb https://artifacts.elastic.co/packages/{{major_version}}/apt stable main"
 

@@ -10,6 +10,13 @@
     state: present
 
 
+# Install python-pexpect 
+- name: Install [ python-pexpect ] 
+  apt:
+    name: python-pexpect
+    state: present
+  
+
 # Import the public signing key
 - name: Import Public Signing Key
   apt_key:
