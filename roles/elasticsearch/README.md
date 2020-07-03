@@ -19,6 +19,12 @@ Dependencies
 ------------
   - Java Role
 
+Features
+--------
+  - Fault Tolerant with Automatic Rollback Feature
+  - Detects the Current version of ES / Compares with Given Version / Asks of confirmation and Overrides
+  
+
 
 Example Playbook
 ----------------
