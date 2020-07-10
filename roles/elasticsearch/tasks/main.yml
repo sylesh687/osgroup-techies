@@ -8,13 +8,18 @@
       block:
         - include: backup/main.yml
       
+
     - name: Install Elasticsearch 
       block:
         - include: install/main.yml
 
+      
+
     - name: Configure Elasticsearch
       block: 
-        - include: configure.main.yml
+        - include: configure/main.yml
+        
+
         
   rescue:
     - debug: 

@@ -14,7 +14,7 @@
   block:
     - name: Set the current version of {{ package_name }} to a var
       set_fact: 
-        es_version: "{{ ansible_facts.packages['curl'][0].version.split('-') | list }}"
+        es_version: "{{ ansible_facts.packages['elasticsearch'][0].version.split('-') | list }}"
     
     # - debug:
     #     msg: "{{ es_version }},{{ abosulte_version }} "

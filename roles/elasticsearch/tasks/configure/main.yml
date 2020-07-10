@@ -1,4 +1,13 @@
 ---
-- include: configure.yml
+- include: configure_default.yml
+  when: character is not defined
 
+- include: configure_master.yml
+  when: character == 'master'
+
+- include: configure_data.yml
+  when: character=='data'
+
+- include: configure_client.yml
+  when: character=='client'
 ...

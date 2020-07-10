@@ -8,7 +8,7 @@ ufw_ports:
 
 # Backup Directory for Configurations while applying new change
 backup_dir: "/opt/es-backups/"
-configuration_dir: "/etc/elasticsearch"
+configuration_dir: "/etc/elasticsearch/"
 package_name: "elasticsearch"
 
 

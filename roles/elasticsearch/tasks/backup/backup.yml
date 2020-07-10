@@ -14,9 +14,10 @@
       recurse: yes
 
     - name: Copy Configurations
-      copy:
-        src: "{{ configuration_dir }} "
+      synchronize:
+        src: "{{ configuration_dir }}"
         dest: "{{ backup_dir }}"
+      delegate_to: "{{ inventory_hostname }}"
         
   when: conf_dir.stat.exists and conf_dir.stat.isdir
 
