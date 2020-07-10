@@ -1,0 +1,5 @@
+---
+- name: Removing {{ package_name }}
+  debug:
+    msg: "Purge Section"
+...

@@ -1,0 +1,23 @@
+---
+- name: Check configuration directory
+  stat:
+    path: "{{ configuration_dir }}"
+  register: conf_dir
+
+- name: Backup Configurations
+  block: 
+    - name: Create a configuration backup directory
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
+      mode: "u=rw"
+      recurse: yes
+
+    - name: Copy Configurations
+      copy:
+        src: "{{ configuration_dir }} "
+        dest: "{{ backup_dir }}"
+        
+  when: conf_dir.stat.exists and conf_dir.stat.isdir
+
+...
