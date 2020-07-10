@@ -52,7 +52,7 @@ bootstrap.memory_lock: true
 
 {% if path_data_master is defined %}
 path.data:
-{% for data_path in path_data_master %}
+{% for data_path in master_data %}
   - {{ data_path }}
 {% endfor %}
 {% else %}
