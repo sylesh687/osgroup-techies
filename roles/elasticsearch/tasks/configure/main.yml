@@ -1,6 +1,6 @@
 ---
 - include: configure_default.yml
-  when: character is not defined
+  when: character=='none'
 
 - include: configure_master.yml
   when: character == 'master'

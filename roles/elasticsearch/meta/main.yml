@@ -9,4 +9,4 @@ galaxy_info:
 
 
 dependencies: 
-  # - java
+   - java
