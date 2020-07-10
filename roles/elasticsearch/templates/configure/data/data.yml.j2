@@ -1,0 +1,66 @@
+# {{ ansible_managed }}
+
+#  ********* Elasticsearch Master  Configuration **********
+
+#  **** Cluster Name *******
+
+{% if cluster_name is defined %}
+cluster.name: "{{ cluster_name }}"
+{% else %}
+cluster.name: "osgroup-techies"
+{% endif %}
+
+#  ***** Bind Address *******
+
+{% if network_host is defined %}
+network.host: {{ network_host }}
+{% else %}
+network.host: 0.0.0.0
+{% endif %}
+
+{% if http_port is defined %}
+http.port: {{ http_port }}
+{% else %} 
+http.port: 9200
+{% endif %}
+
+{% if transport_port is defined %} 
+transport.port: {{ transport_port }}
+{% else %}
+transport.port: 9300
+{% endif %}
+
+
+#  ******  Node Configuration *****
+
+node.name: MASTER-${HOSTNAME}
+node.master: false
+node.data: true
+node.ingest: false
+node.voting_only: false
+node.ml: false
+node.transform: false
+node.remote_cluster_client: false
+xpack.ml.enabled: false
+
+#  *****  Discovery Settings ********
+discovery.zen.ping.unicast.hosts: {{ discovery_zen_ping_unicast_hosts}}
+action.destructive_requires_name: true
+bootstrap.memory_lock: true
+
+#  **** Path Settings *************
+
+{% if path_data_master is defined %}
+path.data:
+{% for data_path in path_data_master %}
+  - {{ data_path }}
+{% endfor %}
+{% else %}
+  - /var/lib/elasticsearch
+{% endif %}
+
+path.logs: /var/log/elasticsearch
+
+
+
+
