@@ -1,0 +1,11 @@
+---
+- name: Update APT Cache 
+  apt:
+    update_cache: yes
+
+- name: Install Python libraries for {{package_name}}
+  apt:
+    name: "{{debian_python_lib_mysql}}"
+    state: present
+
+...

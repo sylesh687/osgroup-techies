@@ -1,0 +1,10 @@
+---
+- include: pre-reqs.yml
+
+- name: Install {{ package_name}}
+  apt:
+    name: "{{ package_name }}"
+    state: present
+
+
+...

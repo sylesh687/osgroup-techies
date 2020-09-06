@@ -1,0 +1,5 @@
+---
+# tasks file for mysql
+
+- include: debian/main.yml
+  when: ansible_facts['os_family']|lower == 'debian'

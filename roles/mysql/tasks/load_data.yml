@@ -1,0 +1,12 @@
+---
+- name: Copy Dump File To Remote Host
+  copy:
+    src: "{{dump_file}}"
+    dest: "{{dump_location}}"
+
+- name: Load Data To MySql
+  mysql_db:
+    name: "{{dbname}}"
+    state: import
+    target: "{{dump_location}}/{{dump_file}}"
+...

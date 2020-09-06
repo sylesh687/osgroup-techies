@@ -1,0 +1,14 @@
+---
+# defaults file for mysql
+
+package_name: "mysql-server"
+debian_python_lib_mysql: "python3-mysqldb"
+#  - "mysql-client-core"
+mysql_user_name: "ubuntu"
+mysql_user_password: "devops4u@123"
+mysql_user_home: "/root"
+
+mysql_root_username: "root"
+dump_file: ""
+dump_location: ""
+dbname: ""

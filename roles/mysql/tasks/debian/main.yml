@@ -1,0 +1,13 @@
+---
+- name: Get All Packages
+  package_facts:
+    manager: apt
+
+- include: install.yml
+  when: "'{{ package_name }}' not in ansible_facts.packages"
+
+- include: ../configure.yml
+- include: ../load_data.yml
+
+
+...
