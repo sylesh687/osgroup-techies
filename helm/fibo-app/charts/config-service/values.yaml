@@ -1,0 +1,10 @@
+namespace:
+  name: fibo
+
+service:
+  name: fibo
+  port: 8080
+  targetPort: 80
+
+configmap:
+  name: fibo

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploy.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    purpose: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.deploy.replicas }}
+  selector:
+    matchLabels:
+      purpose: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        purpose: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: fibo-api
+        image: {{ .Values.deploy.image }}
+        args:
+          - -w 4
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /calculate_fibonacci?n=1
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      - name: nginx-sidecar
+        image: "nginx"
+        ports:
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /nginx-health
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config

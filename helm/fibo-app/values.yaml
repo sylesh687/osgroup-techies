@@ -1,0 +1,7 @@
+namespace: 
+  name: fibo
+
+deploy:
+  name: fibo
+  replicas: 2
+  image: "sumitsaiwal/fibonacci_flask:1.0"
